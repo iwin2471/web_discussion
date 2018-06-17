@@ -9,9 +9,16 @@ import fs from "fs";
 import multer from "multer";
 import m from "moment-timezone";
 import morgan from "morgan";
+import favicon from "serve-favicon";
+import session from "express-session";
+import sessionstore from "sessionstore";
+var device = require("express-device");
+
+let CORS = require("cors")();
+let store = sessionstore.createSessionStore();
 
 //import db
-import { Users, Trainers, Notices, Matchings } from "./mongo";
+import { Users, Boards } from "./mongo";
 
 //function
 require("./func");
@@ -22,11 +29,13 @@ let router = express.Router();
 
 //set view engine
 app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 //passport init
 let passport = require("./passport")();
 
 //server setting
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,17 +43,35 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(CORS);
+app.use(
+  session({ store: store, secret: "what@g00dDay", saveUninitialized: true })
+);
+app.use(device.capture());
 
-//router
-let index = require("./routes/index")(express.Router());
-
-//router use
-app.use("/", index);
-
-//server start
-app.listen(80);
+let server = app.listen(80);
 app.on("error", onError);
 app.on("listening", onListening);
+
+var io = require("socket.io")(server);
+
+io.on("connection", function(socket) {
+  socket.on("message", function(msg) {
+    io.emit("message", msg);
+  });
+
+  socket.on("test", function(msg) {
+    io.emit("test", msg);
+  });
+});
+
+//router
+import { index } from "./routes/index";
+import { auth } from "./routes/auth";
+
+//router use
+app.use("/", index(express.Router()));
+app.use("/auth", auth(express.Router(), passport, Users));
 
 //required error handle
 function normalizePort(val) {

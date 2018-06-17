@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>New Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="웹토론" />
+    <meta name="msapplication-TileColor" content="#996ec4">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <link rel="stylesheet" href="./css/w3.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./js/main.js"></script>
+</head>
+
+<body style="color: #996ec4">
+
+    <div class="w3-bar w3-top w3-large" style="z-index:4;background: #fff">
+        <p class="w3-bar-item w3-left" style="margin:0;width: 250px;height:60px;overflow: hidden;font-size: 12px;white-space: nowrap;">
+            <a href="./M_Main.html" class="w3-hover-none w3-hover-text-light-grey w3-button">
+                <i class="fa fa-chevron-circle-left" style="font-size:25px" aria-hidden="true"></i>
+            </a>토론제목</p>
+        <div class="w3-bar-item w3-right">
+            <img src="https://via.placeholder.com/35x35" alt="프로필" style="border-radius:30px;">
+        </div>
+
+    </div>
+
+    <div style="margin-top:60.5px;box-shadow: 0 4px 10px -5px gray">
+        <a id="use_go" class="w3-bar-item w3-button w3-left" style="width:50%; border-bottom: 5px solid #996ec4;">찬성 측 의견 (2/30)</a>
+        <a id="log_go" class="w3-bar-item w3-button" style="width:50%">반대 측 의견 (2/30) </a>
+    </div>
+    <!--top area-->
+    <Br>
+
+    <div class="bg w3-display-container w3-animate-opacity w3-text-white" style="background:#fff; padding: 0 20px">
+
+        <div id="create_debate" style="color:#996ec4;">
+
+            <div id="chan_opinion">
+                <div id="chan_opinion1" class="w3-animate-opacity">
+                    <img src="https://via.placeholder.com/40x40" style="display:inline;margin-right:10px;border-radius: 50px" width="50" alt="프로필"
+                        oncontextmenu="return false" align="left">
+                    <h3 style="font-weight: bold;">닉네임</h3>
+                    <p style="margin:0 0 0 62px;font-size:14px;word-wrap: break-word;">"블라블라 블라 블라" 브릅르르르브응게이이 시러 캬아아아ㅏ아아ㅏ아아아ㅏㅇ 김준수 조아 켁dasdsadsa</p>
+                    <p onclick="$('#chan_mycomment1').fadeIn()" style="margin:8px 0 8px 62px;font-size: 12px;opacity: 0.6;" class="w3-left">이 의견에 댓글 달기</p>
+                    <a href="M_report.html">
+                        <img style="margin: 8px 0" src="./img/ding.png" class="w3-right" height="20" alt="신고">
+                    </a>
+                    <hr style="border-bottom:solid 1px #996ec4;clear: both">
+
+                    <div id="chan_mycomment1" style="margin-left:15px;display: none;margin-bottom: 10px;">
+                        <span class="w3-left">┗
+                            <img src="https://via.placeholder.com/20x20" style="display:inline;border-radius: 20px" alt=""> 닉네임</span>
+                        <div style="margin:0 10px 0 98px;background: #f1f1f1;border-radius: 10px;padding: 5px 10px;">
+                            <textarea name="mcomment" rows="3" style="width:100%;font-size:13px;background-color:#f1f1f1;border:0;" id="descript" placeholder="댓글 달기"></textarea>
+                            <br>
+                            <div class="w3-right" style="color:rgb(92, 92, 92);">
+                                <a href="#" style="text-decoration: none;" onclick="$('#chan_mycomment1').css('display','none')">취소&nbsp;</a>
+                                <a style="text-decoration: none;" href="#send~~~"> 보내기</a>
+                            </div>
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div id="comment1_1" style="margin-left:15px;clear: both;">
+                        <span class="w3-left">┗
+                            <img src="https://via.placeholder.com/20x20" style="display:inline;border-radius: 20px" alt=""> 닉네임</span>
+                        <p style="margin:0 10px 0 98px;word-wrap: break-word;">응 아니야~ ㄲㅆㅎㅌㅊdsadasdasssssssssssssssssssssssss</p>
+                    </div>
+                    <br>
+
+                    <div id="comment1_2" style="margin-left:15px;">
+                        <span class="w3-left">┗
+                            <img src="https://via.placeholder.com/20x20" style="display:inline;border-radius: 20px" alt=""> 닉네임</span>
+                        <p style="margin:0 10px 0 98px;word-wrap: break-word;">준수한다</p>
+                    </div>
+
+                </div>
+
+                <hr style="clear: both;">
+
+
+
+                <button class="w3-button" id="open_chan" style="color:#fff;width:70%; background: #996ec4; border-radius:10px;float: left;position: absolute; left: 50%; transform: translateX(-50%);">
+                    의견 남기기
+                </button>
+
+            </div>
+
+            <div id="chan_write" style="display: none;">
+                <textarea id="chan_opinion_write" name="chan_opinion_write" rows="4" style="font-size:18px;float: right;" id="descript" class="purpleinput"
+                    placeholder="자신의 의견을 적어주세요"></textarea>
+
+                <div style="color:#996ec4;font-size: 18px;float: right;margin-top: 10px;">
+                    <a style="text-decoration: none" id="backtochan" href="#">취소&nbsp;</a>
+                    <a href="#login~~~" style="text-decoration: none">의견 추가</a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="alerts" style="color:#996ec4;display: none;">
+            <div id="ban_opinion">
+                <div id="opinion1" class="w3-animate-opacity">
+                    <img src="https://via.placeholder.com/40x40" style="display:inline;margin-right:10px;border-radius: 50px" width="50" alt="프로필"
+                        oncontextmenu="return false" align="left">
+                    <h3 style="font-weight: bold;">닉네임</h3>
+                    <p style="margin:0 0 0 62px;font-size:14px;word-wrap: break-word;">"블라블라 블라 블라" 브릅르르르브응게이이 시러 캬아아아ㅏ아아ㅏ아아아ㅏㅇ 김준수 조아 켁dasdsadsa</p>
+                    <p onclick="$('#ban_mycomment1').fadeIn()" style="margin:8px 0 8px 62px;font-size: 12px;opacity: 0.6;" class="w3-left">이 의견에 댓글 달기</p>
+                    <a href="M_report.html">
+                        <img style="margin: 8px 0" src="./img/ding.png" class="w3-right" height="20" alt="신고">
+                    </a>
+                    <hr style="border-bottom:solid 1px #996ec4;clear: both">
+
+
+                    <div id="ban_mycomment1" style="margin-left:15px;display: none;margin-bottom: 10px;">
+                        <span class="w3-left">┗
+                            <img src="https://via.placeholder.com/20x20" style="display:inline;border-radius: 20px" alt=""> 닉네임</span>
+                        <div style="margin:0 10px 0 98px;background: #f1f1f1;border-radius: 10px;padding: 5px 10px;">
+                            <textarea name="mcomment" rows="3" style="width:100%;font-size:13px;background-color:#f1f1f1;border:0;" id="descript" placeholder="댓글 달기"></textarea>
+                            <br>
+                            <div class="w3-right" style="color:rgb(92, 92, 92);">
+                                <a href="#" style="text-decoration: none;" onclick="$('#ban_mycomment1').css('display','none')">취소&nbsp;</a>
+                                <a style="text-decoration: none;" href="#send~~~"> 보내기</a>
+                            </div>
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div id="comment1_1" style="margin-left:15px;clear: both;">
+                        <span class="w3-left">┗
+                            <img src="https://via.placeholder.com/20x20" style="display:inline;border-radius: 20px" alt=""> 닉네임</span>
+                        <p style="margin:0 10px 0 98px;word-wrap: break-word;">응 아니야~ ㄲㅆㅎㅌㅊdsadasdasssssssssssssssssssssssss</p>
+                    </div>
+                    <br>
+
+                    <div id="comment1_2" style="margin-left:15px;">
+                        <span class="w3-left">┗
+                            <img src="https://via.placeholder.com/20x20" style="display:inline;border-radius: 20px" alt=""> 닉네임</span>
+                        <p style="margin:0 10px 0 98px;word-wrap: break-word;">준수한다</p>
+                    </div>
+
+                </div>
+
+                <hr style="clear: both;">
+
+
+                <br>
+
+                <button class="w3-button" id="open_ban" style="color:#fff;width:70%; background: #996ec4; border-radius:10px;float: left;position: absolute; left: 50%; transform: translateX(-50%);">
+                    의견 남기기
+                </button>
+            </div>
+
+            <div id="ban_write" style="display: none;">
+                <textarea id="ban_opinion_write" name="ban_opinion_write" rows="4" style="font-size:18px;float: right;" id="descript" class="purpleinput"
+                    placeholder="자신의 의견을 적어주세요"></textarea>
+
+                <div style="color:#996ec4;font-size: 18px;float: right;margin-top: 10px;">
+                    <a style="text-decoration: none" id="backtoban" href="#">취소&nbsp;</a>
+                    <a href="#opnion~~~" style="text-decoration: none">의견 추가</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+</body>
+
+</html>

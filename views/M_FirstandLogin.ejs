@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>New Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="웹토론">
+    <meta name="msapplication-TileColor" content="#00a1cf">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <link rel="stylesheet" href="./css/w3.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+    <div class="bg w3-display-container w3-animate-opacity w3-text-white" style="background:url('./img/backgrounds.png') no-repeat fixed 0 0 / cover;">
+
+        <div class="w3-center w3-display-middle">
+
+            <div id="Loginpage" class="w3-center">
+                <p style="margin:0">무의미한 말싸움은 이제 그만</p>
+                <h3 style="margin-top:0">진짜 토론을 시작하세요</h3>
+                <h1 class="w3-center" style="font-size:40px;">New Project</h2>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="w3-button w3-border-white" style="width:270px;background:#3b5998;padding: 13px;font-size: 17px;" scope="public_profile,email"
+                        data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true"
+                        data-use-continue-as="true" onclick="fbLogin();">
+                        <i class="fa fa-facebook" style="font-size:23px;" aria-hidden="true"></i>
+                        &nbsp;Facebook으로 로그인
+                    </div>
+                    <!--https://dreamyoungs.github.io/tip/facebook-login-connect 참고-->
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function fbLogin() {
+            FB.login(async function (response) {
+
+                if (response.authResponse) {
+                    console.log('Welcome!  Fetching your information.... ');
+                    access_token = response.authResponse.accessToken;
+                    user_id = response.authResponse.userID;
+                    var result = await axios.get("/auth/facebook", { access_token: access_token });
+
+                    FB.api('/me', function (response) {
+                        user_email = response.email;
+                        location.href = "htpp://localhost/main";
+                    });
+
+                } else
+                    console.log('User cancelled login or did not fully authorize.');
+            });
+            // 로그인 여부 체크
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    FB.api('/me', function (res) {
+                        // 제일 마지막에 실행
+                        console.log("Success Login : " + response.name);
+                    });
+                } else if (response.status === 'not_authorized') {
+                    // 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
+                    alert('앱에 로그인해야 이용가능한 기능입니다.');
+                } else {
+                    // 그 사람은 Facebook에 로그인하지 않았으므로이 앱에 로그인했는지 여부는 확실하지 않습니다.
+                    alert('페이스북에 로그인해야 이용가능한 기능입니다.');
+                }
+            }, true); // 중복실행방지
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1748364875212190',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.8'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            // ko_KR 을 en_US 로 바꾸면 영문으로 로그인버튼을 사용할 수 있어요.
+            js.src = "//connect.facebook.net/ko_KR/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+</body>
+
+</html>

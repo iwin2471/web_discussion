@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>New Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="웹토론" />
+  <meta name="msapplication-TileColor" content="#996ec4">
+  <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+  <link rel="stylesheet" href="./css/w3.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="./js/main.js"></script>
+</head>
+
+<body style="color: #996ec4">
+
+  <div class="w3-bar w3-top w3-large" style="z-index:4;padding-top:5px;background: #fff;box-shadow: 0 4px 10px -5px gray">
+    <p class="w3-bar-item w3-left" style="margin:0;font-size:20px">
+      <a href="javascript:history.back()" class="w3-hover-none w3-hover-text-light-grey w3-button">
+        <i class="fa fa-chevron-circle-left" style="font-size:25px" aria-hidden="true"></i>
+      </a>신고</p>
+    <div class="w3-bar-item w3-right">
+      <img src="https://via.placeholder.com/35x35" alt="프로필" style="border-radius:30px;">
+    </div>
+
+  </div>
+
+  <!--top area-->
+  <Br>
+
+  <div class="bg w3-display-container w3-animate-opacity w3-text-white" style="background:#fff; padding: 0 20px">
+
+    <br>
+    <br>
+
+    <div id="report" style="color:#996ec4;">
+      <h4 style="font-weight:bold;margin: 20px 0">신고의 범주를 선택해주세요</h4>
+      <hr>
+
+      <label>
+        <h5 class="w3-hover-shadow">&nbsp;&nbsp;욕설을 사용했습니다.</h5>
+        <input id="swear_word" name="sue" type="radio" style="position: absolute;
+            opacity: 0;">
+      </label>
+      <hr>
+
+      <label>
+        <h5 class="w3-hover-shadow">&nbsp;&nbsp;근거 없는 비방을 했습니다.</h5>
+        <input id="slander" name="sue" type="radio" style="position: absolute;
+         opacity: 0;">
+      </label>
+      <hr>
+      <label>
+        <h5 class="w3-hover-shadow">&nbsp;&nbsp;불필요한 혐오를 조장합니다</h5>
+        <input id="disgust" name="sue" type="radio" style="position: absolute;
+            opacity: 0;">
+      </label>
+      <hr>
+      <label>
+        <h5 class="w3-hover-shadow" style="font-size:16px">&nbsp;&nbsp;기타 운영원칙에 위배되는 행동을 했습니다.</h5>
+        <input id="etc" name="sue" type="radio" style="position: absolute;
+                opacity: 0;">
+      </label>
+      <hr>
+
+
+    </div>
+
+    <div id="summary" style="color:#996ec4;display: none;">
+      <h4 style="font-weight:bold;margin: 20px 0">관련 내용을 요약해주세요</h4>
+      <hr>
+
+      <textarea name="descript1" rows="4" style="font-size:18px;" id="descript" class="purpleinput" placeholder="짧은 내용 요약"></textarea>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <hr style="border-bottom:solid 1px #996ec4;">
+
+      <div style="color:#996ec4;font-size: 18px;float: right;">
+        <a style="font-weight: bold; text-decoration: none" href="javascript:history.back()">취소&nbsp;</a>
+        <a href="#send~~~" style="font-weight: bold; text-decoration: none"> 보내기</a>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>New Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="웹토론" />
+    <meta name="msapplication-TileColor" content="#996ec4">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <link rel="stylesheet" href="./css/w3.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./js/main.js"></script>
+</head>
+
+<body style="color: #996ec4">
+
+    <div class="w3-bar w3-top w3-large" style="z-index:4;padding-top:5px;background: #fff">
+        <p class="w3-bar-item w3-left" style="margin:0">
+            <a href="./main.html" class="w3-hover-none w3-hover-text-light-grey w3-button">
+                <i class="fa fa-chevron-circle-left" style="font-size:25px" aria-hidden="true"></i>
+            </a>토론 생성</p>
+        <div class="w3-bar-item w3-right">
+            <img src="https://via.placeholder.com/35x35" alt="프로필" style="border-radius:30px;">
+        </div>
+
+    </div>
+
+    <div style="margin-top:60.5px;box-shadow: 0 4px 10px -5px gray">
+        <a id="use_go" class="w3-bar-item w3-button w3-left" style="width:50%; border-bottom: 5px solid #996ec4;">토론</a>
+        <a id="log_go" class="w3-bar-item w3-button" style="width:50%">알림 0 </a>
+    </div>
+    <!--top area-->
+    <Br>
+
+    <div class="bg w3-display-container w3-animate-opacity w3-text-white" style="background:#fff; padding: 0 20px">
+
+        <div id="create_debate">
+            <input id="code" type="text" class="purpleinput" placeholder="제목" maxlength="20">
+            <input id="personnel" type="number" class="purpleinput" pattern="[0-9]*" inputmode="numeric" placeholder="최대 참여 인원(n~nn명)">
+
+            <textarea name="descript1" rows="4" style="font-size:18px;" id="descript" class="purpleinput" placeholder="토론에 관한 간략한 설명"></textarea>
+
+            <input id="until" type="date" class="purpleinput">
+            <br>
+            <br>
+
+            <label class="w3-button" id="chan" style="color:#6e72c4;width:49%; border:3px solid #6e72c4; border-radius:10px;float: left;">
+                <input type="radio" id="agree" name="ox" style="position: absolute;
+            opacity: 0;">찬성</label>
+
+            <label class="w3-button" id="ban" style="color:#c46e6e; width:49%;  border:3px solid #c46e6e; border-radius:10px;float:right;">
+                <input type="radio" id="oppose" name="ox" style="position: absolute;
+            opacity: 0;">반대</label>
+
+            <textarea name="descript2" rows="4" style="font-size:18px;margin-top:20px" id="descript" class="purpleinput" placeholder="토론에 관한 간략한 설명"></textarea>
+            <br>
+            <br>
+            <label style="color:#996ec4;font-size: 13px;float: left">
+                <input type="checkbox" id="yn" name="agreed" />&nbsp;&nbsp; I agree to the Terms of Service</label>
+            <div style="color:#996ec4;font-size: 18px;float: right">
+                <a style="font-weight: bold; text-decoration: none" href="M_Main.html">취소&nbsp;</a>
+                <a href="#login~~~" style="font-weight: bold; text-decoration: none"> 게시</a>
+            </div>
+        </div>
+
+
+        <div id="alerts" style="color:#996ec4;display: none;">
+
+            <a href="#" class="w3-animate-top" style="text-decoration: none;">
+                <img class="w3-animate-top" src="https://via.placeholder.com/40x40" style="display:inline;margin-right:10px;border-radius: 50px"
+                    width="50" alt="프로필" oncontextmenu="return false" align="left">
+                <p style="margin:0;">
+                    <b>[닉네임]</b>님이 내 의견에 댓글을 남겼습니다.</p>
+                <p style="margin-bottom:0;font-size:14px;">"문제인이 사전투표를 했다!"</p>
+            </a>
+
+            <hr>
+
+            <a href="#" class="w3-animate-top" style="text-decoration: none;">
+                <p style="margin-bottom:0;font-size:13px;">회원님의 주제
+                    <b style="font-size: 15px;">TopicName</b>에
+                    <c style="color:#6e72c4">찬성</c> 측 의견이 달렸습니다.</p>
+                <p style="margin-bottom:0;font-size:13px;">"연준이가 선린에 야동을 풀었다!"</p>
+            </a>
+            <hr>
+            <a href="#" class="w3-animate-top" style="text-decoration: none;">
+                <p style="margin-bottom:0;font-size:13px;">회원님의 주제
+                    <b style="font-size: 15px;">TopicName</b>에
+                    <c style="color:#c46e6e;">반대</c> 측 의견이 달렸습니다.</p>
+                <p style="margin-bottom:0;font-size:13px;">"용호가 선린에 준수를 풀었다!"</p>
+            </a>
+            <hr>
+        </div>
+
+
+
+
+    </div>
+
+
+</body>
+
+</html>

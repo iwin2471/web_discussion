@@ -1,5 +1,4 @@
 var multer = require("multer");
-var Q = require("q");
 
 var upload = (req, res, path) => {
   var deferred = Q.defer();
@@ -36,6 +35,12 @@ function user_duplicate(message) {
 function ValidationError(message) {
   this.message = message || "";
 }
+
+function isAuth(req, res, next) {
+  if (req.isAuthenticated()) next();
+  else res.redirect("/");
+}
+
 user_duplicate.prototype = new Error();
 ValidationError.prototype = new Error();
 
@@ -50,3 +55,4 @@ global.check_param = (req_param, params) => {
       req_param[str].length > 0
   );
 };
+global.isAuth = isAuth;
