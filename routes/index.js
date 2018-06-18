@@ -1,14 +1,12 @@
 let index = router => {
-  router
-    .get("/", (req, res, next) => {
-      if (!req.isAuthenticated()) res.render("M_FirstandLogin");
-      else res.redirect("/main");
-      next();
-    })
-    .get("/main", isAuth, (req, res) => {
-      res.render("M_Main");
-    });
+  router.get("/", (req, res, next) => {
+    console.log(req.user);
+    if (!req.isAuthenticated()) return res.render("M_FirstandLogin");
+    else res.redirect("/discuss");
+    next();
+  });
+
   return router;
 };
 
-export { index };
+export default index;

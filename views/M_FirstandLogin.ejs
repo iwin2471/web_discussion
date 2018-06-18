@@ -46,19 +46,16 @@
     </div>
     <script>
         function fbLogin() {
-            FB.login(async function (response) {
-
+            FB.login(function (response) {
                 if (response.authResponse) {
-                    console.log('Welcome!  Fetching your information.... ');
                     access_token = response.authResponse.accessToken;
+
                     user_id = response.authResponse.userID;
-                    var result = await axios.get("/auth/facebook", { access_token: access_token });
 
                     FB.api('/me', function (response) {
                         user_email = response.email;
-                        location.href = "htpp://localhost/main";
+                        location.href = "/auth/fb/token?access_token=" + access_token;
                     });
-
                 } else
                     console.log('User cancelled login or did not fully authorize.');
             });
@@ -94,6 +91,7 @@
             js = d.createElement(s); js.id = id;
             // ko_KR 을 en_US 로 바꾸면 영문으로 로그인버튼을 사용할 수 있어요.
             js.src = "//connect.facebook.net/ko_KR/sdk.js";
+            js.async = true;
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 

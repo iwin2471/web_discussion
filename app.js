@@ -10,12 +10,14 @@ import multer from "multer";
 import m from "moment-timezone";
 import morgan from "morgan";
 import favicon from "serve-favicon";
-import session from "express-session";
-import sessionstore from "sessionstore";
-var device = require("express-device");
+import device from "express-device";
+import helmet from "helmet";
+
+var session = require("express-session");
+var sessionstore = require("sessionstore");
 
 let CORS = require("cors")();
-let store = sessionstore.createSessionStore();
+var store = sessionstore.createSessionStore();
 
 //import db
 import { Users, Boards } from "./mongo";
@@ -25,29 +27,35 @@ require("./func");
 
 //init router and express
 let app = express();
-let router = express.Router();
+
+//passport init
+let passport = require("./passport")();
 
 //set view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-//passport init
-let passport = require("./passport")();
-
 //server setting
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(helmet());
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    store: store,
+    secret: "what@g00dDay",
+    saveUninitialized: true
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(CORS);
-app.use(
-  session({ store: store, secret: "what@g00dDay", saveUninitialized: true })
-);
 app.use(device.capture());
+
+app.disable("x-powered-by");
 
 let server = app.listen(80);
 app.on("error", onError);
@@ -66,12 +74,14 @@ io.on("connection", function(socket) {
 });
 
 //router
-import { index } from "./routes/index";
-import { auth } from "./routes/auth";
+import index from "./routes/index";
+import auth from "./routes/auth";
+import discuss from "./routes/discuss";
 
 //router use
 app.use("/", index(express.Router()));
 app.use("/auth", auth(express.Router(), passport, Users));
+app.use("/discuss", discuss(express.Router(), Boards));
 
 //required error handle
 function normalizePort(val) {

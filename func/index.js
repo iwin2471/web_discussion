@@ -37,8 +37,8 @@ function ValidationError(message) {
 }
 
 function isAuth(req, res, next) {
-  if (req.isAuthenticated()) next();
-  else res.redirect("/");
+  if (req.isAuthenticated()) return next();
+  res.redirect("/");
 }
 
 user_duplicate.prototype = new Error();
