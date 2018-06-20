@@ -9,18 +9,19 @@
     <meta name="description" content="웹토론" />
     <meta name="msapplication-TileColor" content="#996ec4">
     <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
-    <link rel="stylesheet" href="./css/w3.css">
+    <link rel="stylesheet" href="/css/w3.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/createTopic.js"></script>
 </head>
 
 <body style="color: #996ec4">
 
     <div class="w3-bar w3-top w3-large" style="z-index:4;padding-top:5px;background: #fff">
         <p class="w3-bar-item w3-left" style="margin:0">
-            <a href="./main.html" class="w3-hover-none w3-hover-text-light-grey w3-button">
+            <a href="/" class="w3-hover-none w3-hover-text-light-grey w3-button">
                 <i class="fa fa-chevron-circle-left" style="font-size:25px" aria-hidden="true"></i>
             </a>토론 생성</p>
         <div class="w3-bar-item w3-right">
@@ -62,8 +63,8 @@
             <label style="color:#996ec4;font-size: 13px;float: left">
                 <input type="checkbox" id="yn" name="agreed" />&nbsp;&nbsp; I agree to the Terms of Service</label>
             <div style="color:#996ec4;font-size: 18px;float: right">
-                <a style="font-weight: bold; text-decoration: none" href="M_Main.html">취소&nbsp;</a>
-                <a href="#login~~~" style="font-weight: bold; text-decoration: none"> 게시</a>
+                <a style="font-weight: bold; text-decoration: none" href="/">취소&nbsp;</a>
+                <a href="#login~~~" style="font-weight: bold; text-decoration: none" id="submit"> 게시</a>
             </div>
         </div>
 

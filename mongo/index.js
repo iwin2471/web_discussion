@@ -19,7 +19,26 @@ var UserSchema = mongoose.Schema({
 
 var BoardSchema = mongoose.Schema({
   writer_token: { type: String, required: true },
-  content: { type: String, required: true }
+  content: { type: String, required: true },
+  agree: {
+    type: [discussSchema],
+    validate: arrayLimit
+  },
+  disagree: {
+    type: [discussSchema],
+    validate: arrayLimit
+  }
+});
+
+var discussSchema = mongoose.Schema({
+  writer_token: { type: String },
+  contents: { type: String },
+  comments: [
+    {
+      writer_token: { type: String, required: true },
+      contents: { type: String, required: true }
+    }
+  ]
 });
 
 import { Pre_save_user, Post_save_user } from "./err";
@@ -29,6 +48,10 @@ UserSchema.post("save", Post_save_user);
 
 function generateToken() {
   return rndString.generate();
+}
+
+function arrayLimit(val) {
+  return val.length <= 30;
 }
 
 var Users = mongoose.model("users", UserSchema);

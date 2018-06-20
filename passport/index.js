@@ -28,7 +28,7 @@ module.exports = () => {
           clientSecret: ids.facebook.clientSecret,
           profileFields: ["id", "displayName", "photos", "email"]
         },
-        async function(accessToken, refreshToken, profile, done) {
+        function(accessToken, refreshToken, profile, done) {
           return done(null, profile);
         }
       )
