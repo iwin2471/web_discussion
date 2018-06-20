@@ -1,3 +1,8 @@
+var chan;
+
+function create() {
+  location.href = "/discuss/create";
+}
 $(function() {
   var sue = $('input[name="sue"]');
 
@@ -42,6 +47,7 @@ $(function() {
     $("#log_go").css("border-bottom", "none");
     $("#use_go").css("border-bottom", "solid 5px #996ec4");
   });
+
   makeS.click(function() {
     alert("asd");
   });
@@ -53,25 +59,13 @@ $(function() {
     $("#chan").css("color", "#fff");
     $("#ban").css("background", "#fff");
     $("#ban").css("color", "#c46e6e");
+    chan = true;
   });
   $("#oppose").click(function() {
     $("#ban").css("background", "#c46e6e");
     $("#ban").css("color", "#fff");
     $("#chan").css("background", "#fff");
     $("#chan").css("color", "#6e72c4");
-  });
-});
-
-//ajax 토론생성
-$("#login").click(function() {
-  $.ajax({
-    url: "/login",
-    dataType: "json",
-    type: "POST",
-    data: {
-      user_id: $("#user_id").val(),
-      user_pw: $("#user_pw").val()
-    },
-    success: function(response) {}
+    chan = false;
   });
 });

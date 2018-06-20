@@ -12,13 +12,21 @@ var discuss = (router, Boards) => {
         disagree_count: detail.disagree.length
       });
       next();
-    });
-  router
-    .route("/create")
-    .get((req, res) => {
-      res.render("M_CreateTopic");
     })
-    .post((req, res) => {});
+
+    .get("/create", isAuth, (req, res) => {
+      return res.render("M_CreateTopic", { user: req.user });
+    })
+    .post("/", async (req, res) => {
+      var new_board = new Boards(req.body);
+      try {
+        var result = await new_board.save();
+        return req.staus(200).send(result);
+      } catch (e) {
+        if (e instanceof ValidationError)
+          return req.status(400).send({ message: e.message });
+      }
+    });
 
   return router;
 };

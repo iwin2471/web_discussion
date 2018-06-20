@@ -14,20 +14,37 @@ var UserSchema = mongoose.Schema({
   profile_img: { type: String },
   email: { type: String },
   token: { type: String },
-  self_introduce: { type: String }
+  alert: [
+    {
+      //type 0: comment 1: discussion
+      type: { type: Boolean },
+      summary: { type: String },
+      sender_token: { type: String },
+      agreement: {
+        type: String,
+        required: function() {
+          return this.type == true;
+        }
+      }
+    }
+  ]
 });
 
 var BoardSchema = mongoose.Schema({
   writer_token: { type: String, required: true },
-  content: { type: String, required: true },
-  agree: {
+  title: { type: String, required: true },
+  expire_date: { type: String, required: true },
+  description: { type: String, required: true },
+  sub_description: { type: String, required: true },
+  person_limitation: { type: Number, required: true }
+  /*agree: {
     type: [discussSchema],
     validate: arrayLimit
   },
   disagree: {
     type: [discussSchema],
     validate: arrayLimit
-  }
+  }*/
 });
 
 var discussSchema = mongoose.Schema({

@@ -46,29 +46,25 @@
     </div>
     <script>
         function fbLogin() {
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    access_token = response.authResponse.accessToken;
-
-                    user_id = response.authResponse.userID;
-
-                    FB.api('/me', function (response) {
-                        user_email = response.email;
-                        location.href = "/auth/fb/token?access_token=" + access_token;
-                    });
-                } else
-                    console.log('User cancelled login or did not fully authorize.');
-            });
             // 로그인 여부 체크
             FB.getLoginStatus(function (response) {
                 if (response.status === 'connected') {
                     FB.api('/me', function (res) {
-                        // 제일 마지막에 실행
+                        access_token = response.authResponse.accessToken;
+                        if (access_token != null)
+                            location.replace("/auth/fb/token?access_token=" + access_token);
                         console.log("Success Login : " + response.name);
                     });
                 } else if (response.status === 'not_authorized') {
-                    // 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
-                    alert('앱에 로그인해야 이용가능한 기능입니다.');
+                    FB.login(function (response) {
+                        if (response.authResponse) {
+                            access_token = response.authResponse.accessToken;
+                            FB.api('/me', function (res) {
+                                location.replace("/auth/fb/token?access_token=" + access_token);
+                            });
+                        } else
+                            console.log('User cancelled login or did not fully authorize.');
+                    });
                 } else {
                     // 그 사람은 Facebook에 로그인하지 않았으므로이 앱에 로그인했는지 여부는 확실하지 않습니다.
                     alert('페이스북에 로그인해야 이용가능한 기능입니다.');

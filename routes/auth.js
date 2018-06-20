@@ -37,8 +37,13 @@ let auth = (router, passport, Users) => {
                 return res.status(400).json({ message: e.message });
             }
             if (result) {
-              req.logout();
-              req.logIn(user);
+              await req.logout();
+              req.logIn(user, function(err) {
+                if (err) {
+                  return next(err);
+                }
+                return res.redirect("/discuss");
+              });
               return res.redirect("/discuss");
             }
           }
