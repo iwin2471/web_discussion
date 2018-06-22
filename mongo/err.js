@@ -11,4 +11,14 @@ function Post_save_user(error, res, next) {
   else next(error);
 }
 
-export { Pre_save_user, Post_save_user };
+function Pre_save_boards(next) {
+  Counter.findByIdAndUpdate({ _id: "entityId" }, { $inc: { seq: 1 } }, function(
+    err,
+    counter
+  ) {
+    this.id = counter.seq;
+    next();
+  });
+}
+
+export { Pre_save_boards, Pre_save_user, Post_save_user };

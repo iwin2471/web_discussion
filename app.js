@@ -81,7 +81,7 @@ import discuss from "./routes/discuss";
 //router use
 app.use("/", index(express.Router()));
 app.use("/auth", auth(express.Router(), passport, Users));
-app.use("/discuss", discuss(express.Router(), Boards));
+app.use("/discuss", discuss(express.Router(), Users, Boards));
 
 //required error handle
 function normalizePort(val) {

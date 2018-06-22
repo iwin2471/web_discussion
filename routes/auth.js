@@ -18,7 +18,6 @@ let auth = (router, passport, Users) => {
               }
               return res.redirect("/discuss");
             });
-            return res.redirect("/discuss");
           } else {
             var facebook_user = {
               id: req.user._json.id,
@@ -27,7 +26,6 @@ let auth = (router, passport, Users) => {
             };
 
             facebook_user = new Users(facebook_user);
-
             try {
               var result = await facebook_user.save();
             } catch (e) {
@@ -36,16 +34,13 @@ let auth = (router, passport, Users) => {
               if (e instanceof paramsError)
                 return res.status(400).json({ message: e.message });
             }
-            if (result) {
-              await req.logout();
-              req.logIn(user, function(err) {
-                if (err) {
-                  return next(err);
-                }
-                return res.redirect("/discuss");
-              });
+            await req.logout();
+            req.logIn(facebook_user, function(err) {
+              if (err) {
+                return next(err);
+              }
               return res.redirect("/discuss");
-            }
+            });
           }
         } else res.status(401).send("unauth");
         return res.redirect("/discuss");

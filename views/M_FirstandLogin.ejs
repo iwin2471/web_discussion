@@ -39,23 +39,25 @@
                         <i class="fa fa-facebook" style="font-size:23px;" aria-hidden="true"></i>
                         &nbsp;Facebook으로 로그인
                     </div>
-                    <!--https://dreamyoungs.github.io/tip/facebook-login-connect 참고-->
             </div>
 
         </div>
     </div>
     <script>
         function fbLogin() {
-            // 로그인 여부 체크
             FB.getLoginStatus(function (response) {
                 if (response.status === 'connected') {
-                    FB.api('/me', function (res) {
-                        access_token = response.authResponse.accessToken;
-                        if (access_token != null)
-                            location.replace("/auth/fb/token?access_token=" + access_token);
-                        console.log("Success Login : " + response.name);
-                    });
+                    access_token = response.authResponse.accessToken;
+                    location.href = "/auth/fb/token?access_token=" + access_token;
                 } else if (response.status === 'not_authorized') {
+                    FB.login(function (response) {
+                        if (response.authResponse) {
+                            access_token = response.authResponse.accessToken;
+                            location.replace("/auth/fb/token?access_token=" + access_token);
+                        } else
+                            console.log('User cancelled login or did not fully authorize.');
+                    });
+                } else {
                     FB.login(function (response) {
                         if (response.authResponse) {
                             access_token = response.authResponse.accessToken;
@@ -65,9 +67,6 @@
                         } else
                             console.log('User cancelled login or did not fully authorize.');
                     });
-                } else {
-                    // 그 사람은 Facebook에 로그인하지 않았으므로이 앱에 로그인했는지 여부는 확실하지 않습니다.
-                    alert('페이스북에 로그인해야 이용가능한 기능입니다.');
                 }
             }, true); // 중복실행방지
         }

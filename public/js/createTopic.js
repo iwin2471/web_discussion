@@ -11,7 +11,7 @@ $("#submit")
       code == "" ||
       untill == "" ||
       description == "" ||
-      sub_descriptoin == ""
+      sub_description == ""
     ) {
       alert("모든칸을 입력했는지 다시한번 확인해주세요");
     }
@@ -19,13 +19,14 @@ $("#submit")
     if (!yn) alert("약관에 동의해주세요");
     else {
       var result = await axios.post("/discuss", {
-        writer_token: token,
         title: code,
         expire_date: untill,
         description: description,
         sub_description: sub_description,
-        person_limitation: personnel
+        person_limitation: personnel,
+        agreement: chan
       });
-      console.log(result);
+      if (result.status == 200) location.href = "/";
+      else alert(result.body.message);
     }
   });

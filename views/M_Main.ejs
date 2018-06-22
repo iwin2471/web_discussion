@@ -56,75 +56,42 @@
     <div class="bg w3-display-container w3-animate-opacity w3-text-white " style="background:#fff; padding: 0 20px ">
 
         <div id="create_debate " style="color:#996ec4; ">
+            <% for(var i = 0; i<boards.length; i++){%>
+                <a href="/discuss/detail/<%= boards[i]._id%>" style="text-decoration: none " class="w3-animate-right ">
+                    <div class="w3-right ">
+                        <!--value에 반대율 넣어줌됨-->
+                        <div class="donut-widget w3-animate-right " data-chart-size="tiny " data-chart-value="0
+                    " data-chart-primary="#ef5350 " data-chart-background="#00a0e9 " data-chart-text="찬성 | 반대 100% | 0% "></div>
+                    </div>
+                    <div class="w3-left " style="width: 80%;height: 79px;overflow: hidden; text-overflow: ellipsis; ">
+                        <p style="margin:0;padding-bottom: 5px; ">
+                            <b class="w3-left " style="overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display:
+                    inline-block;width: 75% ">&middot;
+                                <%= boards[i].title%>
+                            </b>
+                            <small class="w3-right ">진행 여부</small>
+                        </p>
+                        <hr style="border-bottom:2px solid #996ec4;margin-bottom: 5px; ">
+                        <p style="margin:0;font-size:14px; ">[토론 내용]
+                            <%= boards[i].sub_description%>
+                        </p>
+                    </div>
 
-            <a href="/discuss/detail" style="text-decoration: none " class="w3-animate-right ">
-                <div class="w3-right ">
-                    <!--value에 반대율 넣어줌됨-->
-                    <div class="donut-widget w3-animate-right " data-chart-size="tiny " data-chart-value="0
-                " data-chart-primary="#ef5350 " data-chart-background="#00a0e9 " data-chart-text="찬성 | 반대 100% | 0% "></div>
-                </div>
-                <div class="w3-left " style="width: 80%;height: 79px;overflow: hidden; text-overflow: ellipsis; ">
-                    <p style="margin:0;padding-bottom: 5px; ">
-                        <b class="w3-left " style="overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display:
-                inline-block;width: 75% ">&middot; 금발 여고생</b>
-                        <small class="w3-right ">진행 여부</small>
-                    </p>
-                    <hr style="border-bottom:2px solid #996ec4;margin-bottom: 5px; ">
-                    <p style="margin:0;font-size:14px; ">[토론 내용]사람은 일을 하면서 살아갑니다. 그런데 굳이 일을 해야할 필요가 있을까요? 저는</p>
-                </div>
+                    <hr style="clear: both ">
+                </a>
+                <%}%>
 
-                <hr style="clear: both ">
-            </a>
-            <a href="# " style="text-decoration: none " class="w3-animate-right ">
-                <div class="w3-right ">
-                    <div class="donut-widget w3-animate-right " data-chart-size="tiny " data-chart-value="100
-                " data-chart-primary="#ef5350 " data-chart-background="#00a0e9 " data-chart-text="찬성 | 반대 0% | 100% "></div>
-                </div>
-                <div class="w3-left " style="width: 80%;height: 79px;overflow: hidden; text-overflow: ellipsis; ">
-                    <p style="margin:0;padding-bottom: 5px; ">
-                        <b class="w3-left " style="overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display:
-                inline-block;width: 75% ">&middot; 난 사실 천재아닐까?</b>
-                        <small class="w3-right ">진행 여부</small>
-                    </p>
-                    <hr style="border-bottom:2px solid #996ec4;margin-bottom: 5px; ">
-                    <p style="margin:0;font-size:14px; ">[토론 내용]사람은 일을 하면서 살아갑니다. 그런데 굳이 일을 해야할 필요가 있을까요? 저는</p>
-                </div>
-
-                <hr style="clear: both ">
-            </a>
-            <a href="# " style="text-decoration: none " class="w3-animate-right ">
-                <div class="w3-right ">
-                    <div class="donut-widget w3-animate-right " data-chart-size="tiny " data-chart-value="50
-                " data-chart-primary="#ef5350 " data-chart-background="#00a0e9 " data-chart-text="찬성|반대50%|50% "></div>
-                </div>
-                <div class="w3-left " style="width: 80%;height: 79px;overflow: hidden; text-overflow: ellipsis; ">
-                    <p style="margin:0;padding-bottom: 5px; ">
-                        <b class="w3-left " style="overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display:
-                inline-block;width: 75% ">&middot; 난 사실 천재아닐까?</b>
-                        <small class="w3-right ">진행 여부</small>
-                    </p>
-                    <hr style="border-bottom:2px solid #996ec4;margin-bottom: 5px; ">
-                    <p style="margin:0;font-size:14px; ">[토론 내용]사람은 일을 하면서 살아갑니다. 그런데 굳이 일을 해야할 필요가 있을까요? 저는</p>
-                </div>
-
-                <hr style="clear: both ">
-            </a>
-
-            <button class="w3-button " id="make_debate " style="color:#fff;width:70%; background: #996ec4; border-radius:10px;float:
-                left;position: absolute; left: 50%; transform: translateX(-50%); " onclick="create()">
-                토론 개설하기
-            </button>
+                    <button class="w3-button " id="make_debate " style="color:#fff;width:70%; background: #996ec4; border-radius:10px;float:
+                    left;position: absolute; left: 50%; transform: translateX(-50%); " onclick="create() ">
+                        토론 개설하기
+                    </button>
         </div>
-
-
-
-
 
         <div id="alerts " style="color:#996ec4;display: none; ">
 
             <a href="# " class="w3-animate-top " style="text-decoration: none; ">
                 <img class="w3-animate-top " src="https://via.placeholder.com/40x40 " style="display:inline;margin-right:10px;border-radius:
-                50px " width="50 " alt="프로필 " oncontextmenu="return false " align="left ">
+                    50px " width="50 " alt="프로필 " oncontextmenu="return false " align="left ">
                 <p style="margin:0; ">
                     <b>[닉네임]</b>님이 내 의견에 댓글을 남겼습니다.</p>
                 <p style="margin-bottom:0;font-size:14px; ">"문제인이 사전투표를 했다! "</p>
