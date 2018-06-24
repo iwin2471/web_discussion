@@ -56,12 +56,16 @@
     <div class="bg w3-display-container w3-animate-opacity w3-text-white " style="background:#fff; padding: 0 20px ">
 
         <div id="create_debate " style="color:#996ec4; ">
-            <% for(var i = 0; i<boards.length; i++){%>
+            <% for(var i = 0; i<boards.length; i++){
+                var disagreeleng = boards[i].disagree.length;
+                if(!boards[i].agreement) disagreeleng+=1;
+            %>
+
                 <a href="/discuss/detail/<%= boards[i]._id%>" style="text-decoration: none " class="w3-animate-right ">
                     <div class="w3-right ">
                         <!--value에 반대율 넣어줌됨-->
-                        <div class="donut-widget w3-animate-right " data-chart-size="tiny " data-chart-value="0
-                    " data-chart-primary="#ef5350 " data-chart-background="#00a0e9 " data-chart-text="찬성 | 반대 100% | 0% "></div>
+                        <div class="donut-widget w3-animate-right " data-chart-size="tiny " data-chart-value="<%= (disagreeleng/boards[i].person_limitation)*100 %>"
+                            data-chart-primary="#ef5350 " data-chart-background="#00a0e9 " data-chart-text="찬성|반대 <%= 100-((disagreeleng/boards[i].person_limitation)*100) %>%|<%=(disagreeleng/boards[i].person_limitation)*100 %>%"></div>
                     </div>
                     <div class="w3-left " style="width: 80%;height: 79px;overflow: hidden; text-overflow: ellipsis; ">
                         <p style="margin:0;padding-bottom: 5px; ">

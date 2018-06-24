@@ -10,8 +10,8 @@ mongoose.Promise = global.Promise;
 
 var UserSchema = mongoose.Schema({
   name: { type: String, required: true },
+  id: { type: String, required: true },
   profile_img: { type: String },
-  email: { type: String },
   token: { type: String },
   written: [Number],
   alert: [
@@ -39,6 +39,7 @@ var BoardSchema = mongoose.Schema({
   sub_description: { type: String, required: true },
   person_limitation: { type: Number, required: true },
   agreement: { type: Boolean, required: true },
+  discuss_token: { type: String },
   comments: [
     {
       writer_name: { type: String, required: true },
@@ -47,18 +48,17 @@ var BoardSchema = mongoose.Schema({
     }
   ],
   agree: {
-    type: [discussSchema],
-    validate: arrayLimit
+    type: [discussSchema]
   },
   disagree: {
-    type: [discussSchema],
-    validate: arrayLimit
+    type: [discussSchema]
   }
 });
 
 var discussSchema = mongoose.Schema({
   writer_name: { type: String, required: true },
   writer_img: { type: String, required: true },
+  discuss_token: { type: String },
   contents: { type: String, required: true },
   comments: [
     {
@@ -69,11 +69,14 @@ var discussSchema = mongoose.Schema({
   ]
 });
 
-import { Pre_save_user, Post_save_user } from "./err";
+import { Pre_save_boards, Pre_save_user, Post_save_user } from "./err";
 UserSchema.method("generateToken", generateToken);
+BoardSchema.method("generateToken", generateToken);
+
 UserSchema.pre("save", Pre_save_user);
 UserSchema.post("save", Post_save_user);
 
+BoardSchema.pre("save", Pre_save_boards);
 BoardSchema.post("save", function(error, next) {
   Users.update(
     { name: this.writer_name, profile_img: this.writer_img },
@@ -86,10 +89,6 @@ BoardSchema.post("save", function(error, next) {
 
 function generateToken() {
   return rndString.generate();
-}
-
-function arrayLimit(val) {
-  return val.length <= 30;
 }
 
 BoardSchema.plugin(autoIncrement.plugin, "boards");

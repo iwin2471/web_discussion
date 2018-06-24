@@ -12,13 +12,9 @@ function Post_save_user(error, res, next) {
 }
 
 function Pre_save_boards(next) {
-  Counter.findByIdAndUpdate({ _id: "entityId" }, { $inc: { seq: 1 } }, function(
-    err,
-    counter
-  ) {
-    this.id = counter.seq;
-    next();
-  });
+  this.discuss_token = this.generateToken();
+  next();
 }
+
 
 export { Pre_save_boards, Pre_save_user, Post_save_user };

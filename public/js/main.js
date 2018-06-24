@@ -47,10 +47,6 @@ $(function() {
     $("#log_go").css("border-bottom", "none");
     $("#use_go").css("border-bottom", "solid 5px #996ec4");
   });
-
-  makeS.click(function() {
-    alert("asd");
-  });
 });
 
 $(function() {

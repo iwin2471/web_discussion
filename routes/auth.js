@@ -9,7 +9,7 @@ let auth = (router, passport, Users) => {
       passport.authenticate("facebook-token"),
       async (req, res) => {
         if (req.user) {
-          var user = await Users.findOne({ id: req.user._json.id }, { _id: 0 });
+          var user = await Users.findOne({ id: req.user._json.id }, { _id: 0, __v: 0});
           if (user) {
             await req.logout();
             req.logIn(user, function(err) {
